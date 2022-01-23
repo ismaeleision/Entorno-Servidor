@@ -30,7 +30,8 @@ class CartaBD
     $carta = $conexion->Cards->findOne();
 
     $coleccion = array();
-    $x = new Carta($id = $carta['id'], $name = $carta['name'], $img = $carta[array('image_uris' => 'small')]);
+    $x = new Carta($id = $carta['id'], $name = $carta['name'], $img = $carta["image_uris"]);
+
     array_push($coleccion, $x);
 
     ConexionBD::cerrar();

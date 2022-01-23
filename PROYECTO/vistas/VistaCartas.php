@@ -28,15 +28,17 @@ class VistaCartas extends Vista
 <body>
   <div class="container bg-dark">';
 
+    //la imagen es un array asi que hay que filtrar aqui cual se quiere o en CartaBD
+
     foreach ($cartas as $carta) {
-      $this->html .= '<div class="card" style="width: 18rem;">
-  <img src="' . $carta->getImg() . '" class="card-img-top" width="250px" height="150px">
-  <div class="card-body">
-    <h5 class="card-title">' . $carta->getNombre() . '</h5>
-    <p class="card-text"></p>
-    
-  </div>
-</div>';
+      $this->html .= '
+      <div class="card" style="width: 18rem;">
+        <img src="' . $carta->getImg()->{"normal"} . ' " class="card-img-top" width="400px" height="450px">
+        <div class="card-body">
+        <h5 class="card-title">' . $carta->getNombre() . '</h5>
+        <p class="card-text"></p>
+      </div>
+    </div>';
     }
 
     $this->html .= '</div>
