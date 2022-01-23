@@ -1,0 +1,7 @@
+1|Attack On Titan|Se muerden un dedo y mutan|7.95|attackontitan.jpg
+2|Boku No Hero|Me comi el pelo de un extraño|12.68|bokunohero.jpg
+3|Death Note|Mira mama, mato con la libreta|6.39|deathnote.jpg
+4|Demon Slayer|Matar demonios|11.56|demonslayer.jpg
+5|One Piece|Buscando un tesoro|9.87|onepiece.jpg
+6|Rent A Girlfriend|Me alquilo una novia y la lio|4.32|rent.jpg
+7|Btoom|Battle Royale con bombas|15|btoom.jpg

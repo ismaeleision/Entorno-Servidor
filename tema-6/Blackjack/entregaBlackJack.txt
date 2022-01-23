@@ -1,0 +1,2 @@
+GITHUB->https://github.com/ismaeleision/Entorno-Servidor/tree/main/tema-6/Blackjack
+HEROKU->https://ejercicios2021.herokuapp.com/tema-6/Blackjack

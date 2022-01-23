@@ -1,0 +1,3 @@
+1|romualdo|2021-11-27|Normal
+6|romualdo|2021-11-19|Importante
+7|Pintar Canicas|2021-11-01|Baja
