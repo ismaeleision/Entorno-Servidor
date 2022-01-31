@@ -28,27 +28,25 @@ class VistaSeries
 <body style="height:1500px">
   <div class="container align-items-center">
     <h2>API SERIES</h2>
-  </div>
-  <div class="container mt-3 p-5">
-    <div class="col-2" id="menu">
-      <div class="row mt-2">
-        <button class="btn btn-success" id="accion">Accion</button>
+      <div class="col-2" id="menu">
+        <div class="row mt-1">
+          <button class="btn btn-success" id="accion">Accion</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="animacion">Animacion</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="comedia">Comedia</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="crimen">Crimen</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="documental">Documental</button>
+        <div>
       </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="16">Animacion</button>
+      <div class="col-10">
       </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="35">Comedia</button>
-      </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="80">Crimen</button>
-      </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="99">Documental</button>
-      <div>
-    </div>
-    <div class="col-8" id="muestreo">
-
     </div>
   </div>
 
@@ -58,10 +56,37 @@ class VistaSeries
   //Funcion inicio
   async function inicio() {
 
-    //Boton Nueva Partida
     document.getElementById("accion").addEventListener("click", async function(e){
       const datos = new FormData();
       datos.append("accion", "accion");
+      const response = await fetch("enrutador.php", {method: "POST", body: datos});
+      document.getElementById("muestreo").innerHTML = await response.text();
+    });
+
+    document.getElementById("animacion").addEventListener("click", async function(e){
+      const datos = new FormData();
+      datos.append("accion", "animacion");
+      const response = await fetch("enrutador.php", {method: "POST", body: datos});
+      document.getElementById("muestreo").innerHTML = await response.text();
+    });
+
+    document.getElementById("comedia").addEventListener("click", async function(e){
+      const datos = new FormData();
+      datos.append("accion", "comedia");
+      const response = await fetch("enrutador.php", {method: "POST", body: datos});
+      document.getElementById("muestreo").innerHTML = await response.text();
+    });
+
+    document.getElementById("crimen").addEventListener("click", async function(e){
+      const datos = new FormData();
+      datos.append("accion", "crimen");
+      const response = await fetch("enrutador.php", {method: "POST", body: datos});
+      document.getElementById("muestreo").innerHTML = await response.text();
+    });
+
+    document.getElementById("documental").addEventListener("click", async function(e){
+      const datos = new FormData();
+      datos.append("accion", "documental");
       const response = await fetch("enrutador.php", {method: "POST", body: datos});
       document.getElementById("muestreo").innerHTML = await response.text();
     });
