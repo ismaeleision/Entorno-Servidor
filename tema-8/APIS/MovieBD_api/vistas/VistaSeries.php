@@ -45,7 +45,7 @@ class VistaSeries
           <button class="btn btn-success" id="documental">Documental</button>
         <div>
       </div>
-      <div class="col-10">
+      <div class="col-10" id="muestreo">
       </div>
     </div>
   </div>
@@ -89,6 +89,18 @@ class VistaSeries
       datos.append("accion", "documental");
       const response = await fetch("enrutador.php", {method: "POST", body: datos});
       document.getElementById("muestreo").innerHTML = await response.text();
+    });
+
+    document.getElementById("muestreo"),addEventListener("click", async function(e){
+      //Boton plantarse
+      let botonInfo = e.target.closest("button[name=info]");
+      if (botonInfo){
+        const datos = new FormData();
+        datos.append("accion", "plantarse");
+        datos.append("id", parseInt(botonInfo.value));
+        const response = await fetch("enrutador.php", {method: "POST", body: datos});
+        document.getElementById("muestreo").innerHTML = await response.text();
+      }
     });
   }
   </script>

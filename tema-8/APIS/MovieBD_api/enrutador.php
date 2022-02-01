@@ -50,5 +50,8 @@ if ($_REQUEST) {
     if ($_REQUEST['accion'] == "documental") {
       ControladorSeries::mostrarGenero(99);
     }
+    if ($_REQUEST['accion'] == "id") {
+      ControladorSeries::mostrarSerie($_REQUEST['id']);
+    }
   }
 }

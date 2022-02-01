@@ -11,12 +11,14 @@ class ControladorSeries
   public static function mostrarGenero($genero)
   {
     $series = SeriesBD::getSeries($genero);
-    $html = "";
-    /* 
-   }
-      return $html;
-      */
     $vistaP = new VistaSerie();
     $vistaP->render($series);
+  }
+
+  public static function mostrarSerie($id)
+  {
+    $serie = SeriesBD::getSerie($id);
+    $vistaP = new VistaAmpliada();
+    $vistaP->render($serie);
   }
 }
