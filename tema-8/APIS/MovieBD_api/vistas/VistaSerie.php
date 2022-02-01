@@ -19,7 +19,7 @@ class VistaSerie extends Vista
             <h5 class="card-title">' . $serie->name . '</h5>
             <p class="card-text"><strong>Sinopsis</strong><br>' . $serie->overview . '</p>
             <p class="card-text">Media Votos ' . $serie->vote_average . ' </p>
-            <button class="btn btn-dark" id="' . $serie->id . '" value="' . $serie->id . '" name="info">+Info</button>
+            <button class="btn btn-dark" id="info" value="' . $serie->id . '">+Info</button>
           </div>
         </div>';
     }

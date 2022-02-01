@@ -18,7 +18,6 @@ class VistaSeries
   <title>Series Api</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="imgs/contacto.png" sizes="256x256" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -26,7 +25,7 @@ class VistaSeries
 </head>
 
 <body style="height:1500px">
-  <div class="container align-items-center">
+  <div class="container align-items-center" id="contenedor">
     <h2>API SERIES</h2>
       <div class="col-2" id="menu">
         <div class="row mt-1">
@@ -91,12 +90,12 @@ class VistaSeries
       document.getElementById("muestreo").innerHTML = await response.text();
     });
 
-    document.getElementById("muestreo"),addEventListener("click", async function(e){
+    document.getElementById("contenedor"),addEventListener("click", async function(e){
       //Boton plantarse
-      let botonInfo = e.target.closest("button[name=info]");
+      let botonInfo = e.target.closest("button[id=info]");
       if (botonInfo){
         const datos = new FormData();
-        datos.append("accion", "plantarse");
+        datos.append("accion", "id");
         datos.append("id", parseInt(botonInfo.value));
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
         document.getElementById("muestreo").innerHTML = await response.text();
