@@ -117,17 +117,17 @@ class VistaSeries
       if (botonEscribir){
         const datos = new FormData();
         datos.append("accion", "verEscribir");
-        datos.append("id", parseInt(botonEscribir.value));
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
         document.getElementById("comentarios").innerHTML = await response.text();
       }
-      //Boton para desplegar el formulario para escribir el comentario
+
+      //Boton subir el comentario
       let botonPost = e.target.closest("button[id=enviarComentario]");
       if (botonPost){
         const datos = new FormData();
         datos.append("accion", "escribir");
-        datos.append("id", parseInt(botonEscribir.value));
-        datos.append("comentario, document.getElementById("texto").value);
+        datos.append("id", parseInt(document.getElementById("comentario").value));
+        datos.append("comentario", document.getElementById("texto").value);
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
         document.getElementById("comentarios").innerHTML = await response.text();
       }

@@ -12,7 +12,7 @@ class ComentarioBD
 
     try {
       //Insertar
-      $conexion->comentario->insertOne([
+      $conexion->comentarios->insertOne([
         'id' =>  $comentario->getId(),
         'texto' => $comentario->getTexto()
       ]);
