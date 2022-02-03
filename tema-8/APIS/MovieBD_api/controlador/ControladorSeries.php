@@ -21,7 +21,22 @@ class ControladorSeries
     $vistaP = new VistaAmpliada();
     $vistaP->render($serie);
   }
-  public static function mostrarComentario($id){
-    
+  public static function mostrarComentario($id)
+  {
+    $comentario = ComentarioBD::getComentario($id);
+    $vistaP = new VistaComentario();
+    $vistaP->render($comentario);
+  }
+
+  public static function escribirComentario()
+  {
+    $vista = new VistaEscribirComentario();
+    $vista->render();
+  }
+
+  public static function subirComentario($id, $comentario)
+  {
+    $c = new Comentario($id, $comentario);
+    ComentarioBD::escribir($c);
   }
 }

@@ -1,25 +1,23 @@
 <?php
-class VistaEscribirComentario extends Vista
+class VistaEscribirComentario
 {
 
   public function __construct()
   {
-    $this->html = "";
+    $html = "";
   }
 
-  public function render($comentarios)
+  public function render()
   {
-    $this->html .= '
-    <div class="container">';
-    foreach ($comentarios as $comentario) {
-      $this->html .= '
-      <div>
-        <p>' . $comentario->getTexto() . '</p>
-      </div>';
-    }
+    $this->html = '
+    <form>
+      <div class="mb-3">
+        <label for="texto" class="form-label">Postea tu comentario</label>
+        <input type="text" class="form-control" id="texto">
+      </div>
+      <button  class="btn btn-dark" id="enviarComentario">POST</button>
+    </form>';
 
-
-    $this->html .= '</div>';
     echo $this->html;
   }
 }

@@ -47,6 +47,7 @@ class VistaSeries
     <div class="col-10" id="muestreo">
     </div>
   </div>
+  <div id="comentarios"></div>
  
 
   <script type="text/javascript">
@@ -105,19 +106,30 @@ class VistaSeries
       let botonComentario = e.target.closest("button[id=comentario]");
       if (botonComentario){
         const datos = new FormData();
-        datos.append("accion", "Comentario");
-        datos.append("id", parseInt(botonInfo.value));
+        datos.append("accion", "comentario");
+        datos.append("id", parseInt(botonComentario.value));
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
-        document.getElementById("muestreo").innerHTML = await response.text();
+        document.getElementById("comentarios").innerHTML = await response.text();
       }
 
-      //Boton Info para desplegar la pelicula
+      //Boton para desplegar el formulario para escribir el comentario
       let botonEscribir = e.target.closest("button[id=escribir]");
       if (botonEscribir){
         const datos = new FormData();
-        datos.append("accion", "escribir");
+        datos.append("accion", "verEscribir");
+        datos.append("id", parseInt(botonEscribir.value));
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
-        document.getElementById("muestreo").innerHTML = await response.text();
+        document.getElementById("comentarios").innerHTML = await response.text();
+      }
+      //Boton para desplegar el formulario para escribir el comentario
+      let botonPost = e.target.closest("button[id=enviarComentario]");
+      if (botonPost){
+        const datos = new FormData();
+        datos.append("accion", "escribir");
+        datos.append("id", parseInt(botonEscribir.value));
+        datos.append("comentario, document.getElementById("texto").value);
+        const response = await fetch("enrutador.php", {method: "POST", body: datos});
+        document.getElementById("comentarios").innerHTML = await response.text();
       }
     });
   }

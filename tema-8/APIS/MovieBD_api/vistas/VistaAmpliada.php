@@ -20,8 +20,8 @@ class VistaAmpliada extends Vista
               <p class="card-text">Media Votos ' . $serie->vote_average . ' </p>
           </div>
           <div class="row">
-            <button class="btn btn-dark" id="comentario">Comentarios</button>
-            <button class="btn btn-dark" id="escribir">Escribir Comentario</button>
+            <button class="btn btn-dark" id="comentario" value="' . $serie->id . '">Comentarios</button>
+            <button class="btn btn-dark" id="escribir" value="' . $serie->id . '">Escribir Comentario</button>
           </div>
         </div>';
 

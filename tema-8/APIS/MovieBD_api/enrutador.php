@@ -53,5 +53,14 @@ if ($_REQUEST) {
     if ($_REQUEST['accion'] == "id") {
       ControladorSeries::mostrarSerie($_REQUEST['id']);
     }
+    if ($_REQUEST['accion'] == "comentario") {
+      ControladorSeries::mostrarComentario($_REQUEST['id']);
+    }
+    if ($_REQUEST['accion'] == "verEscribir") {
+      ControladorSeries::escribirComentario();
+    }
+    if ($_REQUEST['accion'] == "escribir") {
+      ControladorSeries::subirComentario($_REQUEST['id'], $_REQUEST['comentario']);
+    }
   }
 }

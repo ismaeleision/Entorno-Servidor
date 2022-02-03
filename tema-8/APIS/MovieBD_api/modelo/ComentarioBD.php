@@ -1,7 +1,12 @@
 <?php
+
+use MongoDB\Client;
+
+require 'vendor/autoload.php';
+
 class ComentarioBD
 {
-  public function escribir($comentario)
+  public static function escribir($comentario)
   {
     $conexion = ConexionBD::conectar("test");
 
@@ -17,7 +22,7 @@ class ComentarioBD
     ConexionBD::cerrar();
   }
 
-  public function getComentario($id)
+  public static function getComentario($id)
   {
     $conexion = ConexionBD::conectar("test");
 
