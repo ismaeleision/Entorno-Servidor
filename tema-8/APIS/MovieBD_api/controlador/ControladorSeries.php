@@ -21,4 +21,7 @@ class ControladorSeries
     $vistaP = new VistaAmpliada();
     $vistaP->render($serie);
   }
+  public static function mostrarComentario($id){
+    
+  }
 }

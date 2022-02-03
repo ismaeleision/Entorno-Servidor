@@ -25,29 +25,29 @@ class VistaSeries
 </head>
 
 <body style="height:1500px">
-  <div class="container align-items-center" id="contenedor">
+  <div class="container" id="contenedor">
     <h2>API SERIES</h2>
-      <div class="col-2" id="menu">
-        <div class="row mt-1">
-          <button class="btn btn-success" id="accion">Accion</button>
-        </div>
-        <div class="row mt-1">
-          <button class="btn btn-success" id="animacion">Animacion</button>
-        </div>
-        <div class="row mt-1">
-          <button class="btn btn-success" id="comedia">Comedia</button>
-        </div>
-        <div class="row mt-1">
-          <button class="btn btn-success" id="crimen">Crimen</button>
-        </div>
-        <div class="row mt-1">
-          <button class="btn btn-success" id="documental">Documental</button>
-        <div>
+    <div class="col-2" id="menu">
+      <div class="row mt-1">
+        <button class="btn btn-success" id="accion">Accion</button>        
       </div>
-      <div class="col-10" id="muestreo">
+      <div class="row mt-1">
+        <button class="btn btn-success" id="animacion">Animacion</button>
       </div>
+      <div class="row mt-1">
+        <button class="btn btn-success" id="comedia">Comedia</button>
+      </div>
+      <div class="row mt-1">          
+        <button class="btn btn-success" id="crimen">Crimen</button>
+      </div>
+      <div class="row mt-1">
+        <button class="btn btn-success" id="documental">Documental</button>
+      <div>
+    </div>
+    <div class="col-10" id="muestreo">
     </div>
   </div>
+ 
 
   <script type="text/javascript">
   window.addEventListener("load", inicio);
@@ -91,12 +91,31 @@ class VistaSeries
     });
 
     document.getElementById("contenedor"),addEventListener("click", async function(e){
-      //Boton plantarse
+      //Boton Info para desplegar la pelicula
       let botonInfo = e.target.closest("button[id=info]");
       if (botonInfo){
         const datos = new FormData();
         datos.append("accion", "id");
         datos.append("id", parseInt(botonInfo.value));
+        const response = await fetch("enrutador.php", {method: "POST", body: datos});
+        document.getElementById("muestreo").innerHTML = await response.text();
+      }
+
+      //Boton Comentario 
+      let botonComentario = e.target.closest("button[id=comentario]");
+      if (botonComentario){
+        const datos = new FormData();
+        datos.append("accion", "Comentario");
+        datos.append("id", parseInt(botonInfo.value));
+        const response = await fetch("enrutador.php", {method: "POST", body: datos});
+        document.getElementById("muestreo").innerHTML = await response.text();
+      }
+
+      //Boton Info para desplegar la pelicula
+      let botonEscribir = e.target.closest("button[id=escribir]");
+      if (botonEscribir){
+        const datos = new FormData();
+        datos.append("accion", "escribir");
         const response = await fetch("enrutador.php", {method: "POST", body: datos});
         document.getElementById("muestreo").innerHTML = await response.text();
       }
