@@ -12,7 +12,7 @@ class VistaSerie extends Vista
   {
     foreach ($series as $serie) {
       $this->html .=
-        '<div class="card col-3" style="width: 18rem;">
+        '<div class="card" style="width: 18rem;">
           <img src="https://image.tmdb.org/t/p/w500' .  $serie->poster_path . '" class="card-img-top" width="400px" height="450px">
           <div class="card-body">
             <h5 class="card-title">' . $serie->name . '</h5>

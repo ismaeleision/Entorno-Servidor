@@ -39,4 +39,11 @@ class ControladorSeries
     $c = new Comentario($id, $comentario);
     ComentarioBD::escribir($c);
   }
+
+  public static function verComentarios($id)
+  {
+    $c = ComentarioBD::getComentario($id);
+    $vista = new VistaVerComentarios();
+    $vista->render($c);
+  }
 }

@@ -26,7 +26,7 @@ class ComentarioBD
   {
     $conexion = ConexionBD::conectar("test");
 
-    $comentarios = $conexion->comentario->find(['id' => intVal($id)]);
+    $comentarios = $conexion->comentarios->find(['id' => intVal($id)]);
 
     $array = array();
 

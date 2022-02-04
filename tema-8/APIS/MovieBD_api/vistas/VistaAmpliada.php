@@ -11,8 +11,8 @@ class VistaAmpliada extends Vista
   public function render($serie)
   {
     $this->html .=
-      '<div class="container col-10">
-          <img src="https://image.tmdb.org/t/p/w500' .  $serie->poster_path . '" width="1000px" height="650px">
+      '<div class="col-10">
+          <img src="https://image.tmdb.org/t/p/w500' .  $serie->poster_path . '">
           <div class="row">
               <h5 class="card-title">' . $serie->name . '</h5>
               <p>' . $serie->first_air_date . '</p>    
@@ -21,7 +21,7 @@ class VistaAmpliada extends Vista
           </div>
           <div class="row">
             <button class="btn btn-dark" id="comentario" value="' . $serie->id . '">Comentarios</button>
-            <button class="btn btn-dark" id="escribir" value="' . $serie->id . '">Escribir Comentario</button>
+            <button class="btn btn-dark mt-1" id="escribir" value="' . $serie->id . '">Escribir Comentario</button>
           </div>
         </div>';
 

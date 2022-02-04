@@ -25,29 +25,33 @@ class VistaSeries
 </head>
 
 <body style="height:1500px">
-  <div class="container" id="contenedor">
-    <h2>API SERIES</h2>
-    <div class="col-2" id="menu">
-      <div class="row mt-1">
-        <button class="btn btn-success" id="accion">Accion</button>        
+  <div class="container">
+    <div class="row" id="contenedor">
+      <h2>API SERIES</h2>
+      <div class="col-1" id="menu">
+        <div class="row mt-1">
+          <button class="btn btn-success" id="accion">Accion</button>        
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="animacion">Animacion</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="comedia">Comedia</button>
+        </div>
+        <div class="row mt-1">          
+          <button class="btn btn-success" id="crimen">Crimen</button>
+        </div>
+        <div class="row mt-1">
+          <button class="btn btn-success" id="documental">Documental</button>
+        </div>
       </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="animacion">Animacion</button>
+      <div class="col-11">
+        <div class="row" id="muestreo">
+        </div>
       </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="comedia">Comedia</button>
-      </div>
-      <div class="row mt-1">          
-        <button class="btn btn-success" id="crimen">Crimen</button>
-      </div>
-      <div class="row mt-1">
-        <button class="btn btn-success" id="documental">Documental</button>
-      <div>
     </div>
-    <div class="col-10" id="muestreo">
-    </div>
+    <div id="comentarios"></div>
   </div>
-  <div id="comentarios"></div>
  
 
   <script type="text/javascript">
