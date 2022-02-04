@@ -28,7 +28,7 @@ class VistaSeries
   <div class="container">
     <div class="row" id="contenedor">
       <h2>API SERIES</h2>
-      <div class="col-1" id="menu">
+      <div class="col-2" id="menu">
         <div class="row mt-1">
           <button class="btn btn-success" id="accion">Accion</button>        
         </div>
@@ -45,12 +45,12 @@ class VistaSeries
           <button class="btn btn-success" id="documental">Documental</button>
         </div>
       </div>
-      <div class="col-11">
+      <div class="col-10">
         <div class="row" id="muestreo">
         </div>
       </div>
     </div>
-    <div id="comentarios"></div>
+   
   </div>
  
 

@@ -11,10 +11,12 @@ class VistaComentario extends Vista
   {
     $this->html .= '
     <div class="container">';
+    $var = 0;
     foreach ($comentarios as $comentario) {
+      $var++;
       $this->html .= '
       <div>
-        <p>' . $comentario->getTexto() . '</p>
+        <p>Comentario ' . $var . '---' . $comentario->getTexto() . '</p>
       </div>';
     }
 

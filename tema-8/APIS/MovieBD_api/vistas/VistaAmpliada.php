@@ -23,6 +23,7 @@ class VistaAmpliada extends Vista
             <button class="btn btn-dark" id="comentario" value="' . $serie->id . '">Comentarios</button>
             <button class="btn btn-dark mt-1" id="escribir" value="' . $serie->id . '">Escribir Comentario</button>
           </div>
+          <div id="comentarios"></div>
         </div>';
 
     echo $this->html;
