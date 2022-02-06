@@ -1,4 +1,3 @@
-const cripo = require('../models/CriptoBD');
 const express = require('express');
 const cripto = require('../controllers/CriptoController');
 

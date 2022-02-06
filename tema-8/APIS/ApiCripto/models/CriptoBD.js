@@ -4,31 +4,31 @@ const Schema = mongoose.Schema;
 const CriptoSchema = Schema({
   id: {
     type: String,
-    require: true,
+    require: false,
   },
   nombre: {
     type: String,
-    require: true,
+    require: false,
   },
   simbolo: {
     type: String,
-    require: true,
+    require: false,
   },
   descrip: {
     type: String,
-    require: true,
+    require: false,
   },
   precio: {
-    type: integer,
-    require: true,
+    type: Number,
+    require: false,
   },
   dia: {
-    type: float,
-    require: true,
+    type: Number,
+    require: false,
   },
   capitalizacion: {
-    type: integer,
-    require: true,
+    type: Number,
+    require: false,
   },
 });
 
