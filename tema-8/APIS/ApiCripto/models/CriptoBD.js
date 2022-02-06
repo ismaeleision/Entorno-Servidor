@@ -22,7 +22,7 @@ const CriptoSchema = Schema({
     type: integer,
     require: true,
   },
-  '24h': {
+  dia: {
     type: float,
     require: true,
   },
