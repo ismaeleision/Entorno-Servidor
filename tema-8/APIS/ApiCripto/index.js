@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const port = process.env.PORT || 3977;
 const urlMongoDb =
-  'mongodb+srv://usuario:usuario@pruebamongo.ishrf.mongodb.net/test';
+  'mongodb+srv://admin:evhT1Hu8ZasF8llx@cluster0.qmwhh.mongodb.net';
 
 mongoose.connect(
   urlMongoDb,
@@ -20,7 +20,7 @@ mongoose.connect(
 
         app.listen(port, () => {
           console.log(
-            `Servidor del API REST esta funcionando en http://localhost:${port}`
+            `Servidor del API REST Cripto esta funcionando en http://localhost:${port}`
           );
         });
       }
