@@ -204,6 +204,7 @@
                 <li><a href="tema-8/Blackjack_AJAX" class="link-dark rounded">Blackjack con Ajax</a></li>
                 <li><a href="tema-8/PHPINFO/phpinfo.php" class="link-dark rounded">PHPINFO</a></li>
                 <li><a href="tema-8/APIS/MovieBD_api/index.php" class="link-dark rounded">ApiSerie</a></li>
+                <li><a href="tema-8/APIS/Api2/index.php" class="link-dark rounded">ApiChistes</a></li>
               </ul>
             </div>
           </li>
