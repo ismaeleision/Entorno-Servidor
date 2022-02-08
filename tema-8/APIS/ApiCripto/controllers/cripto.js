@@ -4,6 +4,12 @@ const Cripto = require('../models/cripto');
 async function getCripto(req, res) {
   try {
     const cripto = await Cripto.find().limit(50);
+
+    if (!cripto) {
+      res.status(400).send({ msg: 'Error al obtener las tareas' });
+    } else {
+      res.status(200).send(cripto);
+    }
   } catch (error) {
     res.status(500).send(error);
   }
@@ -29,10 +35,11 @@ async function putCripto(req, res) {
 //Actualiza la subida del precio de la cripto
 async function upCripto(req, res) {
   const idCripto = req.params.id;
-  const params = { precio: 500 };
 
   try {
-    const cripto = await Cripto.findByIdAndUpdate(idCripto, params);
+    const cripto = await Cripto.findByIdAndUpdate(idCripto, {
+      $inc: { precio: 0.1 },
+    }).exec();
 
     if (!cripto) {
       res.status(400).send({ msg: 'No se ha podido actualizar la cripto' });
@@ -47,10 +54,10 @@ async function upCripto(req, res) {
 //Actualiza la bajada del precio de la cripto
 async function downCripto(req, res) {
   const idCripto = req.params.id;
-  const params = { precio: precio - 0.1 };
-
   try {
-    const cripto = await Cripto.findByIdAndUpdate(idCripto, params);
+    const cripto = await Cripto.findByIdAndUpdate(idCripto, {
+      $inc: { precio: -0.1 },
+    }).exec();
 
     if (!cripto) {
       res.status(400).send({ msg: 'No se ha podido actualizar la cripto' });
@@ -91,17 +98,24 @@ async function addCripto(req, res) {
 //obtiene la cripto con mas valor
 async function getTopValue(req, res) {
   try {
-    const cripto = await Cripto.find();
+    const cripto = await Cripto.findOne().sort({ precio: -1 });
+
+    if (!cripto) {
+      res.status(400).send({ msg: 'Not found' });
+    } else {
+      res.status(200).send(cripto);
+    }
   } catch (error) {
     res.status(500).send(error);
   }
 }
 
 //Devuelve la cripto por id
+//Fumciona solo con el _id
 async function getCriptoId(req, res) {
   try {
     const idCripto = req.params.id;
-    const cripto = await Cripto.findById();
+    const cripto = await Cripto.findById(idCripto);
 
     if (!cripto) {
       res.status(400).send({ msg: 'Not found' });
@@ -115,7 +129,7 @@ async function getCriptoId(req, res) {
 
 //Elimina una cripto de la bd por id
 async function deleteCripto(req, res) {
-  const idTask = req.params.id;
+  const idCripto = req.params.id;
 
   try {
     const cripto = await Cripto.findByIdAndDelete(idCripto);
@@ -123,7 +137,7 @@ async function deleteCripto(req, res) {
     if (!cripto) {
       res.status(404).send({ msg: 'No se ha podido eliminar la tarea' });
     } else {
-      res.status(200).send({ msg: 'Tarea eliminada' });
+      res.status(200).send({ msg: 'cripto eliminada' });
     }
   } catch (error) {
     res.status(500).send(error);
