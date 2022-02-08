@@ -29,7 +29,7 @@ async function putCripto(req, res) {
 //Actualiza la subida del precio de la cripto
 async function upCripto(req, res) {
   const idCripto = req.params.id;
-  const params = { precio: precio + 0.1 };
+  const params = { precio: 500 };
 
   try {
     const cripto = await Cripto.findByIdAndUpdate(idCripto, params);
@@ -91,7 +91,7 @@ async function addCripto(req, res) {
 //obtiene la cripto con mas valor
 async function getTopValue(req, res) {
   try {
-    const cripto = await Cripto.findOne().sort({ precio: -1 });
+    const cripto = await Cripto.findOne({ precio: -1 });
   } catch (error) {
     res.status(500).send(error);
   }
