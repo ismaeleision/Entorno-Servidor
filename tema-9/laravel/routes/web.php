@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IncidenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/incidencias/{incidencia}', [IncidenciaController::class, 'destroy']);
+
+//Meteria todas las rutas asociadas al controlador resource
+Route::resource('/incidencias', IncidenciaController::class);

@@ -91,7 +91,7 @@ async function addCripto(req, res) {
 //obtiene la cripto con mas valor
 async function getTopValue(req, res) {
   try {
-    const cripto = await Cripto.findOne({ precio: -1 });
+    const cripto = await Cripto.find();
   } catch (error) {
     res.status(500).send(error);
   }
