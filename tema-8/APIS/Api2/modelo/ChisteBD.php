@@ -2,10 +2,7 @@
 
 class ChisteBD
 {
-
-  /**
-   * Obtiene todos los productos de la BD
-   */
+  //obtiene de la api un chiste aleatorio que contenga el genero
   public static function getRandomGenero($genero)
   {
     $url = "https://api.chucknorris.io/jokes/random?category=" . $genero;
@@ -16,6 +13,7 @@ class ChisteBD
     return $X;
   }
 
+  //obtiene un chiste aleatorio sin genero
   public static function getRandom()
   {
     $url = "https://api.chucknorris.io/jokes/random";
@@ -26,6 +24,7 @@ class ChisteBD
     return $X;
   }
 
+  //obtiene todos los chistes que contengan las palabras o palabra que se haya escrito en el buscador
   public static function buscador($palabra)
   {
     try {

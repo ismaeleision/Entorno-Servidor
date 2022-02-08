@@ -96,6 +96,7 @@ class VistaInicio
 
   //Funcion inicio
   async function inicio() {
+    //Si se pulsa el boton random lanza la llamada a enrutador con la accion random
     document.getElementById("random").addEventListener("click", async function(e){
       const datos = new FormData();
       datos.append("accion", "random");
@@ -103,6 +104,7 @@ class VistaInicio
       document.getElementById("muestreo").innerHTML = await response.text();
     });
 
+    //Cada vez que se levante la tecla mientras se escriba en el buscador lanza la llamada a accion buscador
     document.getElementById("buscador").addEventListener("keyup", async function(e){
       const datos = new FormData();
       datos.append("accion", "buscador");
@@ -112,6 +114,7 @@ class VistaInicio
     });
 
     document.getElementById("contenedor"),addEventListener("click", async function(e){
+      //si el id es genero manda una llamada a enrutador con accion genero y genero valor del boton
       let botonPost = e.target.closest("button[id=genero]");
       if (botonPost){
         const datos = new FormData();
