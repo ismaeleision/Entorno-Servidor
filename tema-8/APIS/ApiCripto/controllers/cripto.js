@@ -1,4 +1,4 @@
-const Cripto = require('../models/CriptoBD');
+const Cripto = require('../models/cripto');
 
 //Devuelve las primeras 50 criptos de la bd
 async function getCripto(req, res) {

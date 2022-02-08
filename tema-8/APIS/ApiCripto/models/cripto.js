@@ -32,4 +32,4 @@ const CriptoSchema = Schema({
   },
 });
 
-module.exports = mongoose.model('Cripto', CriptoSchema);
+module.exports = mongoose.model('cripto', CriptoSchema);
