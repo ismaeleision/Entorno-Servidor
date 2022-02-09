@@ -1,0 +1,3 @@
+Heroku 
+Series->https://ejercicios2021.herokuapp.com/tema-8/APIS/MovieBD_api
+Chiste->https://ejercicios2021.herokuapp.com/tema-8/APIS/Api2
