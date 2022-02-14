@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('servicio_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('servicio_id')->references('id')->on('servicios');
+            $table->unique(['fecha', 'hora'], 'mismodia_unique');
             $table->timestamps();
         });
     }
