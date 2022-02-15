@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cita;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,8 @@ class CitaController extends Controller
      */
     public function create()
     {
-        //
+        $servicios = Servicio::all();
+        return view('createCita', ['servicios' => $servicios]);
     }
 
     /**
@@ -38,7 +40,17 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //creamos una cita y se guarda en la bd
+        $cita = new Cita;
+        $cita->fecha = $request->get('fecha');
+        $cita->hora = $request->get('hora');
+        $cita->observaciones = $request->get('observaciones');
+        $cita->user_id = Auth::id();
+        $cita->servicio_id = $request->get('servicio');
+        $cita->save();
+
+        //Redirigimos al index
+        return redirect()->route('citas.index');
     }
 
     /**
@@ -58,9 +70,10 @@ class CitaController extends Controller
      * @param  \App\Models\cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function edit(cita $cita)
+    public function edit($id)
     {
-        //
+        $cita = Cita::where('id', '=', $id);
+        return view('editCita', ['cita' => $cita]);
     }
 
     /**
@@ -81,8 +94,9 @@ class CitaController extends Controller
      * @param  \App\Models\cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cita $cita)
+    public function destroy($id)
     {
-        //
+        Cita::destroy($id);
+        return redirect()->route('citas.index');
     }
 }
