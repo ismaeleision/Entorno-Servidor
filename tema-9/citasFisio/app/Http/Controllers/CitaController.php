@@ -72,8 +72,14 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
-        $cita = Cita::where('id', '=', $id);
-        return view('editCita', ['cita' => $cita]);
+        $cita = Cita::find($id);
+        $servicios = Servicio::all();
+        //Sacar las horas libres esa fecha
+        $horas = Cita::select('hora')->where('fecha', $cita->fecha)->get();
+        $horasTotales = collect(['hora' => 10, 'hora' => 11, 'hora' => 12, 'hora' => 13, 'hora' => 17, 'hora' => 18, 'hora' => 19, 'hora' => 20]);
+        $horasLibres = $horasTotales->diffAssoc($horas);
+        var_dump($horas);
+        return view('editCita', ['cita' => $cita, 'servicios' => $servicios]);
     }
 
     /**
@@ -85,7 +91,9 @@ class CitaController extends Controller
      */
     public function update(Request $request, cita $cita)
     {
-        //
+        echo ("actualizando");
+        //Redirigimos al index
+        //return redirect()->route('citas.index');
     }
 
     /**

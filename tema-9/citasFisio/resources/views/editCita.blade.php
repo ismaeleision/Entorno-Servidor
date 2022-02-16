@@ -9,14 +9,15 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <form method="POST" action="{{ route('citas.edit') }}">
+          <form method="POST" action="/dashboard/citas/{{ $cita->id }}">
             @csrf
+            @method('PUT')
 
             <!-- Fecha -->
             <div>
               <x-label for="fecha" :value="__('Fecha')" />
 
-              <x-input id="fecha" class="block mt-1 w-full" type="date" name="fecha" :value="old('fecha')" required autofocus />
+              <x-input id="fecha" class="block mt-1 w-full" type="date" name="fecha" value="{{$cita->fecha}}" required autofocus />
             </div>
 
             <!-- Hora -->
@@ -37,7 +38,7 @@
             <div class="mt-4">
               <x-label for="observaciones" :value="__('Observaciones')" />
 
-              <x-input id="observaciones" class="block mt-1 w-full" type="text" name="observaciones" required />
+              <x-input id="observaciones" class="block mt-1 w-full" type="text" name="observaciones" value="{{$cita->observaciones}}" required />
             </div>
 
             <!-- Servicio -->
@@ -52,12 +53,24 @@
             </div>
 
             <x-button class="ml-4 mt-2">
-              {{ __('Nueva Cita') }}
+              {{ __('Editar Cita') }}
             </x-button>
         </div>
         </form>
       </div>
     </div>
   </div>
-  </div>
+  <script>
+    window.addEventListener('load', function() {
+      cargarHoras;
+      document.getElementById("fecha").addEventListener("change", cargarHoras);
+    });
+
+    function cargarHoras() {
+      let hora = document.getElementById('hora');
+      for ($hora of $horas){
+        
+      }
+    }
+  </script>
 </x-app-layout>
