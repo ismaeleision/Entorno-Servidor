@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cita;
+use App\Models\Hora;
+use App\Models\Cita;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
+    /**
+     * Display horas libres en una fecha
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function horasDisp($fecha)
+    {
+        //Sacar las horas libres esa fecha
+        $horasLibres = Hora::select('hora')->whereNotIn('hora', Cita::select('hora')->where('fecha', $fecha)->get())->get();
+        foreach ($horasLibres as $hora) {
+            echo "<option value='{$hora->hora}'>{$hora->hora}:00</option>";
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +32,7 @@ class CitaController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $citas = Cita::where('user_id', $id)->get();
+        $citas = Cita::where('user_id', $id)->paginate(5);
         return view('dashboard', ['citas' => $citas]);
     }
 
@@ -28,8 +43,9 @@ class CitaController extends Controller
      */
     public function create()
     {
+        $horas = Hora::all();
         $servicios = Servicio::all();
-        return view('createCita', ['servicios' => $servicios]);
+        return view('createCita', ['servicios' => $servicios, 'horas' => $horas]);
     }
 
     /**
@@ -40,16 +56,14 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        //creamos una cita y se guarda en la bd
+        //Insercción
         $cita = new Cita;
-        $cita->fecha = $request->get('fecha');
-        $cita->hora = $request->get('hora');
-        $cita->observaciones = $request->get('observaciones');
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->observaciones = $request->observaciones;
+        $cita->servicio_id = $request->servicio;
         $cita->user_id = Auth::id();
-        $cita->servicio_id = $request->get('servicio');
         $cita->save();
-
-        //Redirigimos al index
         return redirect()->route('citas.index');
     }
 
@@ -89,11 +103,28 @@ class CitaController extends Controller
      * @param  \App\Models\cita  $cita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cita $cita)
+    public function update(Request $request, cita $cita, $id)
     {
-        echo ("actualizando");
-        //Redirigimos al index
-        //return redirect()->route('citas.index');
+        //Validación
+        $validated = $request->validate([
+            'observaciones' => 'required|max:255',
+            'fecha' => 'required|min:'
+        ]);
+
+        //Modificación
+        $cita = Cita::find($id);
+        if ($cita->user_id == Auth::id()) {
+            $cita->fecha = $request->fecha;
+            $cita->hora = $request->hora;
+            $cita->observaciones = $request->observaciones;
+            $cita->servicio_id = $request->servicio;
+            $cita->user_id = Auth::id();
+            $cita->save();
+        } else {
+            abort(403);
+        }
+
+        return redirect()->route('citas.index');
     }
 
     /**
@@ -104,7 +135,12 @@ class CitaController extends Controller
      */
     public function destroy($id)
     {
-        Cita::destroy($id);
+        $cita = Cita::find($id);
+        if ($cita->user_id == Auth::id()) {
+            Cita::destroy($id);
+        } else {
+            abort(403);
+        }
         return redirect()->route('citas.index');
     }
 }
