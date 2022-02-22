@@ -13,11 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('servicios');
+            $table->string('imagen');
             $table->timestamps();
         });
+
+        /*
+        Schema::table('servicios', function (Blueprint $table) {
+            $table->string('imagen');
+        });
+        */
     }
 
     /**

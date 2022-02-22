@@ -48,6 +48,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('/servicios/delete/{id}', [ServicioController::class, 'destroy']);
         Route::get('/servicios/create', [ServicioController::class, 'create']);
         Route::post('/servicios', [ServicioController::class, 'store'])->name('servicios.store');
+        Route::resource('servicios', ServicioController::class);
     });
 });
 

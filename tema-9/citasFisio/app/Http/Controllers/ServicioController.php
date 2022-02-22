@@ -43,8 +43,9 @@ class ServicioController extends Controller
         ]);
 
         $servicio = new Servicio;
-        $servicio->servicio = $request->servicio;
+        $servicio->servicios = $request->servicios;
         $servicio->imagen = '';
+        //$servicio->masajista_id = $request->masajista_id;
         $servicio->save();
 
         //$path = $request->file('imagen')->store('public');
@@ -55,5 +56,6 @@ class ServicioController extends Controller
 
         $servicio->imagen = asset('storage/' . $servicio->id . '.jpg');
         $servicio->save();
+        return view('servicios');
     }
 }
