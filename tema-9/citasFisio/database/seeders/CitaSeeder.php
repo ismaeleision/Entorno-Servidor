@@ -16,7 +16,7 @@ class CitaSeeder extends Seeder
     public function run()
     {
         Cita::factory()
-            ->count(49)
+            ->count(100)
             ->create();
     }
 }
