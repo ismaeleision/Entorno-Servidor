@@ -36,12 +36,6 @@ class ServicioController extends Controller
 
     public function store(Request $request)
     {
-        //Validación
-        $validated = $request->validate([
-            'servicio' => 'required|max:255',
-            'imagen' => 'required'
-        ]);
-
         $servicio = new Servicio;
         $servicio->servicios = $request->servicios;
         $servicio->imagen = '';
@@ -56,6 +50,8 @@ class ServicioController extends Controller
 
         $servicio->imagen = asset('storage/' . $servicio->id . '.jpg');
         $servicio->save();
-        return view('servicios');
+
+        $servicios = Servicio::all();
+        return view('servicios', ['servicios' => $servicios]);
     }
 }

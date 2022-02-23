@@ -19,6 +19,8 @@
               <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Masajista</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagen</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -27,11 +29,15 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ $servicio->servicios}}</div>
                 </td>
+                <td></td>
                 <!-- Para añadir a la web mas de un fisio/masajista que sera el id del usuario con el tipo fisio
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ $servicio->masajista }}</div>
                 </td>
 -->
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900"><img src="{{ $servicio->imagen}}" width='300px'></div>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <a href="/dashboard/servicio/delete/{{ $servicio->id }}" data-method='delete' class="text-indigo-600 hover:text-indigo-900">Delete</a>
                 </td>
