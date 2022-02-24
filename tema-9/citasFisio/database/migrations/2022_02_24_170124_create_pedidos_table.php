@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('citas', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('fecha');
-            $table->integer('hora');
-            $table->text('observaciones')->nullable();
+            $table->string('estado'); //enproceso, preparado, enviado, entregado, cancelado
+            $table->float('gastos_envio');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('servicio_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('servicio_id')->references('id')->on('servicios');
-            //No puede haber dos citas el mismo día a la misma hora
-            $table->unique(["fecha", "hora"], 'mismodia_unique');
             $table->timestamps();
         });
     }
@@ -35,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('pedidos');
     }
 };
