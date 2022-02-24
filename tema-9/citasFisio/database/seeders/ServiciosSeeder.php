@@ -15,10 +15,10 @@ class ServiciosSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("servicios")->insert(['servicios' => 'Final Feliz']);
-        DB::table("servicios")->insert(['servicios' => 'Cuello']);
-        DB::table("servicios")->insert(['servicios' => 'Trapecios']);
-        DB::table("servicios")->insert(['servicios' => 'Final Triste']);
-        DB::table("servicios")->insert(['servicios' => 'Espalda']);
+        DB::table("servicios")->insert(['servicios' => 'Final Feliz', 'imagen' => $this->faker->imageUrl(640, 480, 'products')]);
+        DB::table("servicios")->insert(['servicios' => 'Cuello', 'imagen' => $this->faker->imageUrl(640, 480, 'products')]);
+        DB::table("servicios")->insert(['servicios' => 'Trapecios', 'imagen' => $this->faker->imageUrl(640, 480, 'products')]);
+        DB::table("servicios")->insert(['servicios' => 'Final Triste', 'imagen' => $this->faker->imageUrl(640, 480, 'products')]);
+        DB::table("servicios")->insert(['servicios' => 'Espalda', 'imagen' => $this->faker->imageUrl(640, 480, 'products')]);
     }
 }

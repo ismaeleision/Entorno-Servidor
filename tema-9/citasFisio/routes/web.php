@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ServicioController;
-
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +16,23 @@ use App\Http\Controllers\ServicioController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Las rutas estáticas con lo que ofrece la empresa - PÁGINA ESTÁTICA
+Route::get('/', [ServicioController::class, 'indexPublic']);
+Route::get('/tienda', [ProductoController::class, 'index']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tienda/carro/{id}', [ProductoController::class, 'addCarro']);
+    Route::get('/tienda/verCarro', [ProductoController::class, 'verCarro']);
+    Route::get('/tienda/quitarCarro/{id}', [ProductoController::class, 'quitarCarro']);
+    Route::get('/tienda/hacerPedido', [PedidoController::class, 'hacerPedido']);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::prefix('/dashboard')->group(function () {
     Route::middleware(['auth'])->group(function () {
+        //Mis rutas ---------------------------------------
+
+        //Ruta al entrar al panel de administración
         Route::get('/', [CitaController::class, 'index'])->name('dashboard');
         Route::get('/citas/delete/{cita}', [CitaController::class, 'destroy']);
 
@@ -40,15 +48,18 @@ Route::prefix('/dashboard')->group(function () {
 
         //Ver horas libres en una fecha, para poder dar una cita
         Route::get('/citas/horasDisp/{fecha}', [CitaController::class, 'horasDisp']);
+
+        //Rutas de PEDIDOS --------------------------------
+        Route::get('/pedidos', [PedidoController::class, 'index'])->name('dashboard.pedidos');
+        Route::get('/pedidos/{id}', [PedidoController::class, 'show']);
     });
 
-    //servicios
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        //Rutas para Servicios
         Route::get('/servicios', [ServicioController::class, 'index'])->name('dashboard.servicios');
         Route::get('/servicios/delete/{id}', [ServicioController::class, 'destroy']);
         Route::get('/servicios/create', [ServicioController::class, 'create']);
         Route::post('/servicios', [ServicioController::class, 'store'])->name('servicios.store');
-        Route::resource('servicios', ServicioController::class);
     });
 });
 

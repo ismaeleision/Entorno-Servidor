@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servicio;
 use App\Models\Cita;
+use Illuminate\Support\Facades\Auth;
 
 class ServicioController extends Controller
 {
@@ -12,8 +13,16 @@ class ServicioController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Servicio::class);
+
         $servicios = Servicio::all();
         return view('servicios', ['servicios' => $servicios]);
+    }
+
+    public function indexPublic()
+    {
+        $servicios = Servicio::all();
+        return view('welcome', ['servicios' => $servicios]);
     }
 
     public function destroy($id)
@@ -26,7 +35,8 @@ class ServicioController extends Controller
             Servicio::destroy($id);
         }
 
-        return redirect()->route('dashboard.servicios');
+        $servicios = Servicio::all();
+        return view('welcome', ['servicios' => $servicios]);
     }
 
     public function create()
@@ -39,7 +49,6 @@ class ServicioController extends Controller
         $servicio = new Servicio;
         $servicio->servicios = $request->servicios;
         $servicio->imagen = '';
-        //$servicio->masajista_id = $request->masajista_id;
         $servicio->save();
 
         //$path = $request->file('imagen')->store('public');
@@ -52,6 +61,6 @@ class ServicioController extends Controller
         $servicio->save();
 
         $servicios = Servicio::all();
-        return view('servicios', ['servicios' => $servicios]);
+        return view('welcome', ['servicios' => $servicios]);
     }
 }

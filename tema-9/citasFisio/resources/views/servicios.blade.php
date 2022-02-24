@@ -39,7 +39,7 @@
                   <div class="text-sm text-gray-900"><img src="{{ $servicio->imagen}}" width='300px'></div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="/dashboard/servicio/delete/{{ $servicio->id }}" data-method='delete' class="text-indigo-600 hover:text-indigo-900">Delete</a>
+                  <a href="/dashboard/servicios/delete/{{ $servicio->id }}" data-method='delete' class="text-indigo-600 hover:text-indigo-900">Delete</a>
                 </td>
               </tr>
               @endforeach

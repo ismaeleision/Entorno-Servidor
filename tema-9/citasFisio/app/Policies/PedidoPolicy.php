@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Servicio;
+use App\Models\Pedido;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ServicioPolicy
+class PedidoPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,18 @@ class ServicioPolicy
      */
     public function viewAny(User $user)
     {
-        return ($user->role === 'admin');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Servicio  $servicio
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Servicio $servicio)
+    public function view(User $user, Pedido $pedido)
     {
-        //
+        return ($user->id === $pedido->user_id) || ($user->role == 'admin');
     }
 
     /**
@@ -48,10 +47,10 @@ class ServicioPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Servicio  $servicio
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Servicio $servicio)
+    public function update(User $user, Pedido $pedido)
     {
         //
     }
@@ -60,10 +59,10 @@ class ServicioPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Servicio  $servicio
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Servicio $servicio)
+    public function delete(User $user, Pedido $pedido)
     {
         //
     }
@@ -72,10 +71,10 @@ class ServicioPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Servicio  $servicio
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Servicio $servicio)
+    public function restore(User $user, Pedido $pedido)
     {
         //
     }
@@ -84,10 +83,10 @@ class ServicioPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Servicio  $servicio
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Servicio $servicio)
+    public function forceDelete(User $user, Pedido $pedido)
     {
         //
     }

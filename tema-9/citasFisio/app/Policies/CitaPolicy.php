@@ -18,7 +18,7 @@ class CitaPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        
     }
 
     /**
@@ -30,7 +30,7 @@ class CitaPolicy
      */
     public function view(User $user, Cita $cita)
     {
-        //
+        return ($user->id === $cita->user_id) || ($user->role == 'admin');
     }
 
     /**
@@ -53,7 +53,7 @@ class CitaPolicy
      */
     public function update(User $user, Cita $cita)
     {
-        //
+        return ($user->id === $cita->user_id) || ($user->role == 'admin');
     }
 
     /**
@@ -65,7 +65,7 @@ class CitaPolicy
      */
     public function delete(User $user, Cita $cita)
     {
-        //
+        return ($user->id === $cita->user_id) || ($user->role == 'admin');
     }
 
     /**
