@@ -18,7 +18,7 @@ use App\Http\Controllers\PedidoController;
 
 //Las rutas estáticas con lo que ofrece la empresa - PÁGINA ESTÁTICA
 Route::get('/', [ServicioController::class, 'indexPublic']);
-Route::get('/tienda', [ProductoController::class, 'index']);
+Route::get('/tienda', [ProductoController::class, 'index'])->name('tienda');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/tienda/carro/{id}', [ProductoController::class, 'addCarro']);
