@@ -21,8 +21,8 @@ class CitaFactory extends Factory
             'fecha' => $this->faker->dateTimeBetween('-1 week', '+2 week'),
             'hora' => $this->faker->numberBetween(10, 20),
             'observaciones' => $this->faker->text(150),
-            'user_id' => $this->faker->numberBetween(1, 3),
-            'servicio_id' => $this->faker->numberBetween(1, 8)
+            'user_id' => $this->faker->numberBetween(1, 2),
+            'servicio_id' => $this->faker->numberBetween(1, 5)
         ];
     }
 }
