@@ -22,7 +22,7 @@ class ServicioController extends Controller
     public function indexPublic()
     {
         $servicios = Servicio::all();
-        return view('welcome', ['servicios' => $servicios]);
+        return view('servicios', ['servicios' => $servicios]);
     }
 
     public function destroy($id)
@@ -36,7 +36,7 @@ class ServicioController extends Controller
         }
 
         $servicios = Servicio::all();
-        return view('welcome', ['servicios' => $servicios]);
+        return view('servicios', ['servicios' => $servicios]);
     }
 
     public function create()

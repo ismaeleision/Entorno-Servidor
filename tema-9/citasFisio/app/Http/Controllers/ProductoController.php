@@ -19,7 +19,10 @@ class ProductoController extends Controller
         $productos = Producto::all();
         return view('tienda', ['productos' => $productos]);
     }
-
+    public function indexPublic()
+    {
+        redirect('tienda');
+    }
     /**
      * Show the form for creating a new resource.
      *
