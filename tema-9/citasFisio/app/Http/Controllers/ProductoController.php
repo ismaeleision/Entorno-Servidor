@@ -110,7 +110,7 @@ class ProductoController extends Controller
     public function quitar1Carro($id)
     {
         $userID = Auth::id();
-        var_dump(\Cart::getContent());
+        var_dump(\Cart::session($userID)->getContent($id));
         /*
         if (\Cart::getContent()->$id->quantity > 0) {
             \Cart::session($userID)->update($id, [
