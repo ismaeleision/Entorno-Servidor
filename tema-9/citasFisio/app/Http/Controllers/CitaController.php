@@ -32,7 +32,7 @@ class CitaController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $citas = Cita::where('user_id', $id)->paginate(5);
+        $citas = Cita::where('user_id', $id)->paginate(7);
         return view('dashboard', ['citas' => $citas]);
     }
 

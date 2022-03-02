@@ -15,9 +15,9 @@
               <img src="{{$producto->imagen}}" class="w-4/12">
               <h3 class="m-5">{{$producto->nombre}} {{$producto->precio}}€</h3>
               @auth
-              <x-button class="mr-3" :href="$producto->id">
+              <x-boton-tienda :href="$producto->id">
                 Comprar
-              </x-button>
+              </x-boton-tienda>
               @endauth
               <p>{{$producto->descripcion}}</p>
             </div>

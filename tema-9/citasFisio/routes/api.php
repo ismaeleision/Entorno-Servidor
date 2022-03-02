@@ -1,10 +1,15 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthApiController;
 use App\Http\Controllers\CitaController;
-use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\PedidoController;
+use App\Models\Pedido;
+use App\Models\Producto;
+use App\Models\Cita;
+use App\Http\Resources\CitaResource;
+use App\Http\Resources\ProductoResource;
+use App\Http\Resources\PedidoResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,51 +22,24 @@ use App\Http\Controllers\PedidoController;
 |
 */
 
-//Las rutas estáticas con lo que ofrece la empresa - PÁGINA ESTÁTICA
-Route::get('/', [ServicioController::class, 'indexPublic']);
-Route::get('/tienda', [ProductoController::class, 'index']);
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/tienda/carro/{id}', [ProductoController::class, 'addCarro']);
-    Route::get('/tienda/verCarro', [ProductoController::class, 'verCarro']);
-    Route::get('/tienda/quitarCarro/{id}', [ProductoController::class, 'quitarCarro']);
-    Route::get('/tienda/hacerPedido', [PedidoController::class, 'hacerPedido']);
-});
-
-
-Route::prefix('/dashboard')->group(function () {
-    Route::middleware(['auth'])->group(function () {
-        //Mis rutas ---------------------------------------
-
-        //Ruta al entrar al panel de administración
-        Route::get('/', [CitaController::class, 'index'])->name('dashboard');
-        Route::get('/citas/delete/{cita}', [CitaController::class, 'destroy']);
-
-        //Rutas asociadas al controlador resource CitaController
-        //GET /citas index citas.index
-        //GET /citas/create create citas.create
-        //POST /citas store citas.store
-        //GET /citas/{cita} show citas.show
-        //GET /citas/{cita}/edit edit citas.edit
-        //PUT/PATCH /citas/{cita} update citas.update
-        //DELETE /citas/{cita} destroy citas.destroy
-        Route::resource('citas', CitaController::class);
-
-        //Ver horas libres en una fecha, para poder dar una cita
-        Route::get('/citas/horasDisp/{fecha}', [CitaController::class, 'horasDisp']);
-
-        //Rutas de PEDIDOS --------------------------------
-        Route::get('/pedidos', [PedidoController::class, 'index'])->name('dashboard.pedidos');
-        Route::get('/pedidos/{id}', [PedidoController::class, 'show']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/pedidos', function () {
+        return PedidoResource::collection(Pedido::all());
+    });
+    Route::get('/pedidos/{id}', function ($id) {
+        return new PedidoResource(Pedido::findOrFail($id));
+    });
+    Route::get('/productos', function () {
+        return ProductoResource::collection(Producto::all());
+    });
+    Route::get('/citas', function () {
+        return CitaResource::collection(Cita::all());
     });
 
-    Route::middleware(['auth', 'role:admin'])->group(function () {
-        //Rutas para Servicios
-        Route::get('/servicios', [ServicioController::class, 'index'])->name('dashboard.servicios');
-        Route::get('/servicios/delete/{id}', [ServicioController::class, 'destroy']);
-        Route::get('/servicios/create', [ServicioController::class, 'create']);
-        Route::post('/servicios', [ServicioController::class, 'store'])->name('servicios.store');
-    });
+    Route::post('/citas', [CitaController::class, 'createApi']);
+    Route::delete('/citas/{id}', [CitaController::class, 'deleteApi']);
 });
 
-require __DIR__ . '/auth.php';
+//Estas rutas van fuera de auth:sanctum por que son las que generan el token, aún no lo tenemos
+Route::post('/registro', [AuthApiController::class, 'registro']);
+Route::post('/login', [AuthApiController::class, 'login']);
