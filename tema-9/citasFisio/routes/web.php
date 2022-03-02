@@ -23,6 +23,7 @@ Route::get('/tienda', [ProductoController::class, 'index'])->name('tienda');
 Route::middleware(['auth'])->group(function () {
     Route::get('/tienda/carro/{id}', [ProductoController::class, 'addCarro']);
     Route::get('/tienda/verCarro', [ProductoController::class, 'verCarro']);
+    Route::get('/tienda/quitar1Carro/{id}', [ProductoController::class, 'quitar1Carro']);
     Route::get('/tienda/quitarCarro/{id}', [ProductoController::class, 'quitarCarro']);
     Route::get('/tienda/hacerPedido', [PedidoController::class, 'hacerPedido']);
 });

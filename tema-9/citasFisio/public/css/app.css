@@ -650,6 +650,9 @@ select {
 .m-5 {
   margin: 1.25rem;
 }
+.m-2 {
+  margin: 0.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -661,10 +664,6 @@ select {
 .-mx-8 {
   margin-left: -2rem;
   margin-right: -2rem;
-}
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -695,9 +694,6 @@ select {
 }
 .mr-4 {
   margin-right: 1rem;
-}
-.ml-5 {
-  margin-left: 1.25rem;
 }
 .mb-4 {
   margin-bottom: 1rem;

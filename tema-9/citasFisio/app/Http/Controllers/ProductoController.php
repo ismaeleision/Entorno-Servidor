@@ -107,6 +107,24 @@ class ProductoController extends Controller
         return back();
     }
 
+    public function quitar1Carro($id)
+    {
+        $userID = Auth::id();
+        var_dump(\Cart::getContent());
+        /*
+        if (\Cart::getContent()->$id->quantity > 0) {
+            \Cart::session($userID)->update($id, [
+                'quantity' => -1,
+            ]);
+        } else {
+            quitarCarro($id);
+        }
+
+
+        return back();
+        */
+    }
+
     public function verCarro()
     {
         $userID = Auth::id();
