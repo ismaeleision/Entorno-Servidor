@@ -107,22 +107,31 @@ class ProductoController extends Controller
         return back();
     }
 
+    /**
+     * Saca la cantidad del objeto en el carrito 
+     * Segun la cantidad o quita uno o lo borra si la cantidad es 1
+     */
     public function quitar1Carro($id)
     {
         $userID = Auth::id();
-        var_dump(\Cart::session($userID)->getContent($id));
-        /*
-        if (\Cart::getContent()->$id->quantity > 0) {
+
+        //Sacar la cantidad del objeto en el carro
+        $items = \Cart::session($userID)->getContent($id);
+        $items = $items[1]->quantity;
+
+        if ($items >= 2) {
             \Cart::session($userID)->update($id, [
                 'quantity' => -1,
+
             ]);
+            echo "quito";
         } else {
-            quitarCarro($id);
+            \Cart::session($userID)->remove($id);
+            echo "borro";
         }
 
-
-        return back();
-        */
+        $items = \Cart::getContent();
+        return view('verCarro', ['items' => $items]);
     }
 
     public function verCarro()
