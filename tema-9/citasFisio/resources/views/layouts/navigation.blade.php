@@ -28,6 +28,11 @@
                         {{ __('Citas') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.pedidos')" :active="request()->routeIs('dashboard.pedidos')">
+                        {{ __('Pedidos') }}
+                    </x-nav-link>
+                </div>
 
                 @if (Auth::user()->role == 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -35,6 +40,7 @@
                         {{ __('Servicios') }}
                     </x-nav-link>
                 </div>
+
                 @endif
             </div>
             @endauth

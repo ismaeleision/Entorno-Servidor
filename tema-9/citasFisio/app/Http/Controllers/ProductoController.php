@@ -119,15 +119,13 @@ class ProductoController extends Controller
         $items = \Cart::session($userID)->getContent($id);
         $items = $items[1]->quantity;
 
-        if ($items >= 2) {
+        if ($items > 1) {
             \Cart::session($userID)->update($id, [
                 'quantity' => -1,
 
             ]);
-            echo "quito";
         } else {
             \Cart::session($userID)->remove($id);
-            echo "borro";
         }
 
         $items = \Cart::getContent();
