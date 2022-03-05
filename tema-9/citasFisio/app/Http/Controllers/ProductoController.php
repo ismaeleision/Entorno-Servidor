@@ -30,7 +30,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('createProducto');
     }
 
     /**
@@ -41,7 +41,24 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->descripcion = $request->descripcion;
+        $producto->imagen = '';
+        $producto->save();
+
+        //$path = $request->file('imagen')->store('public');
+        $path = $request->file('imagen')->storeAs(
+            'public',
+            $producto->id . '.jpg'
+        );
+
+        $producto->imagen = asset('storage/' . $producto->id . '.jpg');
+        $producto->save();
+
+        $productos = Producto::all();
+        return view('tienda', ['productos' => $productos]);
     }
 
     /**

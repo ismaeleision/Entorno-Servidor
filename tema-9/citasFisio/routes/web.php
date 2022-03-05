@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tienda/quitar1Carro/{id}', [ProductoController::class, 'quitar1Carro']);
     Route::get('/tienda/quitarCarro/{id}', [ProductoController::class, 'quitarCarro']);
     Route::get('/tienda/hacerPedido', [PedidoController::class, 'hacerPedido']);
+
+    //Estos para guardar productos nuevos
+    Route::get('/tienda/create', [ProductoController::class, 'create']);
+    Route::post('/tienda', [ProductoController::class, 'store'])->name('tienda.store');
 });
 
 

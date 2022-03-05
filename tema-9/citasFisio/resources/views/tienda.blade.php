@@ -2,6 +2,16 @@
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __('Productos') }}
+
+      @auth
+      @if (Auth::user()->role == 'admin')
+      <a href="/tienda/create">
+        <x-button class="ml-3">
+          {{ __('Nuevo Producto') }}
+        </x-button>
+      </a>
+      @endif
+      @endauth
     </h2>
   </x-slot>
 
