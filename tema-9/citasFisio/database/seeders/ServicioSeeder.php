@@ -17,7 +17,6 @@ class ServicioSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        DB::table("servicios")->insert(['servicios' => 'Final Feliz', 'imagen' => $faker->imageUrl(640, 480, 'service')]);
         DB::table("servicios")->insert(['servicios' => 'Cuello', 'imagen' => $faker->imageUrl(640, 480, 'products')]);
         DB::table("servicios")->insert(['servicios' => 'Trapecios', 'imagen' => $faker->imageUrl(640, 480, 'products')]);
         DB::table("servicios")->insert(['servicios' => 'Final Triste', 'imagen' => $faker->imageUrl(640, 480, 'products')]);
